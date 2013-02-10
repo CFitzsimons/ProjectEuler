@@ -1,6 +1,6 @@
 /*
 *   Author: Colin Fitzsimons
-*   Problem: http://projecteuler.net/problem=1
+*   Problem: http://projecteuler.net/problem=2
 *   Date: 10/2/2013
 */
 #include <iostream>
