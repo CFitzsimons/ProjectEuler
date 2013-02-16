@@ -15,7 +15,6 @@ bool isPal(long);
 string parseString(long);
 
 int main(){
-
     int factorOne = 999, factorTwo = 999;
     long highest = 0;
     while(factorOne != 100){
@@ -34,7 +33,7 @@ int main(){
             factorTwo--;
     }
     cout << "Highest palindromic value is: " << highest;
-    
+
     return 0;
 }
 /*
