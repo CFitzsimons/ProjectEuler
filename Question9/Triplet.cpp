@@ -26,7 +26,7 @@ int main(){
                     cout << a*b*c; //Product of the three numbers
                     return 0;
                 }
-            }//Close a for loop
+            }//Close c for loop
         }//Close b for loop
     }//Close a for loop
     cout << "Program exiting without solution";
