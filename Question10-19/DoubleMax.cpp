@@ -4,6 +4,8 @@
 *   Probelm: http://projecteuler.net/problem=11
 */
 
+//PROBLEM HAS BEEN TRACKED DOWN TO LEFT DIAGONAL AREA
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -15,19 +17,29 @@ const int GRIDSIZE = 20;
 
 int main(){
     int grid [GRIDSIZE][GRIDSIZE];
-    int largest = 0;
+    long largest = 1;
     fstream readFile;
     readFile.open("Input.txt");
     string temp;
     
-    //Light testing has been done for this loop.
+    //Loop operates correclty~
     for(int x = 0; x < GRIDSIZE; x++){
         for(int y = 0; y < GRIDSIZE; y++){
             readFile >> temp;
             grid[x][y] = parseInt(temp);
         }
     }
+    readFile.close();
 
+    //THIS WAS CONSTRUCTED TO TEST THE GRID OUTPUT
+    for(int x = 0; x < GRIDSIZE; x++){
+        for(int y = 0; y < GRIDSIZE; y++){
+            if(grid[x][y] < 10)
+                cout << 0;            
+             cout << grid[x][y] << " ";
+        }
+        cout << endl;
+    }
 
     /* 
     *  This loop seems to have 'a lot' of reused code and this is something
@@ -35,46 +47,54 @@ int main(){
     *  is that as I reduce the size of the code (i.e. Reduce reused code) I
     *  increase the complexity of the loop.
     */
+    long tempInt;
     for(int x = 0; x < GRIDSIZE; x++){
         for(int y = 0; y < GRIDSIZE; y++){
-
-            int temp = 1;
+            //cout << x << " " << y << endl; 
+            tempInt = 1;
             if(x < 20 && y < 17){
                 for(int i = 0; i < 4; i++)
-                    temp *= grid[x][y+i];
-                if(temp > largest)
-                    largest = temp;
-                temp = 1;
+                    tempInt *= grid[x][y+i];
+                if(tempInt > largest){
+                    largest = tempInt;
+                }
+                tempInt = 1;
                  
             }//Close horizontal check
             
             if(x < 17 && y < 20){
                 for(int i = 0; i < 4; i++)
-                    temp *= grid[x+i][y];
-                if(temp > largest)
-                    largest = temp;
-                temp = 1;
+                    tempInt *= grid[x+i][y];
+                if(tempInt > largest){
+                    largest = tempInt;
+                }
+                tempInt = 1;
             }//Close vertical check
 
             if(x < 17 && y < 17){
                 for(int i = 0; i < 4; i++)
-                    temp *= grid[x+i][y+i];
-                if(temp > largest)
-                    largest = temp;
-                temp = 1;
+                    tempInt *= grid[x+i][y+i];
+                if(tempInt > largest){
+                    largest = tempInt;
+                }
+                tempInt = 1;
             }//Close right diagonal check
 
-            if(x < 17 && y > 3){
+            if(x > 3 && y < 17){
                 for(int i = 0; i < 4; i++)
-                    temp *= grid[x-i][y-i];
-                if(temp > largest)
-                    largest = temp;
-                temp = 1;
+                    tempInt *= grid[x+(-i)][y+(-i)];
+                if(tempInt > largest){
+                    cout << x << "" << largest << " " << y << endl;
+                    largest = tempInt;
+                }
+                tempInt = 1;
             }//Close left diagonal check
+           
         }//Close y loop
     }//Close x loop
 
     cout << largest << endl;
+
     return 0;
 }
 
