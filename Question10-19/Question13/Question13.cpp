@@ -28,6 +28,7 @@ int main(){
     string sum = "";
     int currentSum = 0;
     //Loop to track index of individual numbers
+    
     for(int i = 49; i >= 0; i--){
         //Loop to track each number provided
         for(int k = 0; k < 100; k++){
@@ -35,7 +36,7 @@ int main(){
         }        
         //Place the integer into a stream
         result << (int)(currentSum%10);
-        //Output the stream and concatonate it.
+        //Output the stream and concatenate it.
         sum = result.str() + sum;
         
         //Clear the stream.
